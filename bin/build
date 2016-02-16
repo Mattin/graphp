@@ -1,0 +1,23 @@
+#!/bin/bash
+
+DIR="$( cd "$(dirname ""$( dirname "${BASH_SOURCE[0]}" )"")" && pwd )"
+
+cd $DIR
+
+MODE=$1
+COMPOSER_DEV_FLAG=
+
+if [ "$MODE" == "production" ] || [ "$MODE" == "testing" ]; then
+    COMPOSER_DEV_FLAG=--no-dev
+fi
+
+echo -e '\033[33;32m Generating optimized autoload files\033[0m'
+php composer.phar -o install ${COMPOSER_DEV_FLAG}
+echo -e '\033[33;32m Generating optimized autoload files completed!\033[0m'
+
+./bin/console doctrine:migrations:migrate --no-interaction
+./bin/console doctrine:cache:clear-metadata --flush
+./bin/console doctrine:cache:clear-query
+./bin/console doctrine:cache:clear-result
+
+echo -e "\033[48;5m \033[33;32m BUILD COMPLETED!!!\033[0m Thank you! And have a nice day!"
