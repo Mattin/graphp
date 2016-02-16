@@ -53,8 +53,9 @@ final class QueryCommand extends Command
             if ($jsonDecoded !== null && $service->setQueryArray($jsonDecoded) && $service->query()) {
                 $output->writeln($service->getResult());
             } else {
-                throw new \ErrorException('Error occuerd during query. '
-                .'Check your query format or contact your service provider :).');
+                throw new \ErrorException(
+                    'Error occuerd during query. Check your query format or contact your service provider :).'
+                );
             }
         } else {
             throw new \InvalidArgumentException('File not found or invalid argument provided.');

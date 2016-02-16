@@ -1,5 +1,5 @@
 <?php
-// Composer autoloading (PSR-0).
+/** Composer autoloading (PSR-0). */
 require_once __DIR__ . '/../vendor/autoload.php';
 define("ROOT", __DIR__ . "/../");
 

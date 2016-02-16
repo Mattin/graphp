@@ -4,7 +4,7 @@ return [
     'console.name' => 'GraPHP',
     'console.version' => '0.0.1',
     'console.project_directory' => __DIR__ . '/..',
-    'console.commands' => function() {
+    'console.commands' => function () {
         $commands[] = new \Command\ImportCommand();
         $commands[] = new \Command\QueryCommand();
         $commands[] = new \Codito\Silex\DoctrineMigrationsService\Console\Command\GenerateCommand();
